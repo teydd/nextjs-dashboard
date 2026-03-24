@@ -1,3 +1,4 @@
+"use client"
 import { CustomerField } from '@/app/lib/definitions';
 import Link from 'next/link';
 import {
@@ -7,11 +8,14 @@ import {
   UserCircleIcon,
 } from '@heroicons/react/24/outline';
 import { Button } from '@/app/ui/button';
+import { useFormState } from 'react-dom';
+import { useActionState } from 'react';
 import { createInvoice } from '@/app/lib/action';
 
 export default function Form({ customers }: { customers: CustomerField[] }) {
+    const [errorMessage, formAction] = useActionState(createInvoice, undefined);
   return (
-    <form action={createInvoice}>
+    <form action={formAction}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         {/* Customer Name */}
         <div className="mb-4">
@@ -108,6 +112,7 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
         </Link>
         <Button type="submit">Create Invoice</Button>
       </div>
+        {errorMessage && <p className="text-red-500">{errorMessage}</p>}
     </form>
   );
 }

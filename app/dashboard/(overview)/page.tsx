@@ -4,7 +4,8 @@ import LatestInvoices from '@/app/ui/dashboard/latest-invoices';
 import { lusitana } from '@/app/ui/fonts';
 import { Suspense } from 'react';
 import { CardsSkeleton, LatestInvoicesSkeleton, RevenueChartSkeleton } from '@/app/ui/skeletons';
- 
+export const dynamic = "force-dynamic";
+
 export default async function Page() { 
   return (
     <main>
